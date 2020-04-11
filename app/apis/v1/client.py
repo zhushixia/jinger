@@ -1,9 +1,10 @@
-from flask import request
+from flask import request, jsonify
 from wtforms import ValidationError
 
 from app.libs.enums import ClientTypeEnums
 from app.libs.error_code import ClientTypeError
 from app.libs.redprint import Redprint
+from app.libs.response_code import RET
 from app.models.user import User
 from app.validators.forms import ClientForm, UserEmailForm
 
@@ -19,7 +20,8 @@ def create_user():
         }
         promise[form.type.data]()
     else:
-        raise ClientTypeError()
+        # return jsonify(errno=RET.PARAMERR, errmsg="参数校验错误")
+        raise ClientTypeError
     return 'success'
 
 def __register_user_by_email():

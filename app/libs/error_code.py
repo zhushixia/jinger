@@ -1,8 +1,9 @@
 from werkzeug.exceptions import HTTPException
 
+from app.libs.error import APIException
 
-class ClientTypeError(HTTPException):
+
+class ClientTypeError(APIException):
     code = 400
-    description = (
-        "client is invalid"
-    )
+    error_code = 9999
+    msg = "client is invalid"
