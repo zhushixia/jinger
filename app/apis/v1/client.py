@@ -2,7 +2,7 @@ from flask import request, jsonify
 from wtforms import ValidationError
 
 from app.libs.enums import ClientTypeEnums
-from app.libs.error_code import ClientTypeError, DatabaseException
+from app.libs.error_code import ClientTypeError, DatabaseException, Success
 from app.libs.redprint import Redprint
 from app.libs.response_code import RET
 from app.models.user import User
@@ -19,7 +19,7 @@ def create_user():
         ClientTypeEnums.USER_EMAIL: __register_user_by_email
     }
     promise[form.type.data]()
-    return 'success'
+    return Success()
 
 
 def __register_user_by_email():

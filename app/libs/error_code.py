@@ -30,3 +30,17 @@ class Success(APIException):
     code = 201
     msg = 'ok'
     error_code = 0
+
+
+class NotFound(APIException):
+    code = 404
+    msg = 'the resource are not found O__O...'
+    error_code = 1001
+
+
+class AuthFailed(APIException):
+    code = 401
+    error_code = 1005
+    msg = 'authorization failed'
+
+

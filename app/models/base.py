@@ -4,6 +4,8 @@ from contextlib import contextmanager
 from flask_sqlalchemy import SQLAlchemy as _SQLAlchemy, BaseQuery
 from sqlalchemy import Column, Integer, SmallInteger
 
+from app.libs.error_code import NotFound
+
 
 class SQLAlchemy(_SQLAlchemy):
     @contextmanager
@@ -20,6 +22,18 @@ class Query(BaseQuery):
         if 'status' not in kwargs.keys():
             kwargs['status'] = 1
         return super(Query, self).filter_by(**kwargs)
+
+    def first_or_404(self, description=None):
+        rv = self.first()
+        if not rv:
+            raise NotFound()
+        return rv
+
+    def get_or_404(self, ident, description=None):
+        rv = self.get(ident)
+        if not rv:
+            raise NotFound()
+        return rv
 
 db = SQLAlchemy(query_class=Query)
 
