@@ -1,1 +1,3 @@
 TOKEN_EXPIRATION = 30 * 24 * 3600
+
+MAIL_SERVER = 'smtp.163.com'

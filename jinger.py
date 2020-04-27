@@ -3,8 +3,11 @@ from werkzeug.exceptions import HTTPException
 from app.app import create_app
 from app.libs.error import APIException
 from app.libs.error_code import ServerError
+from flask_mail import Mail
 
 app = create_app()
+mail = Mail(app)
+
 
 # @app.errorhandler(Exception)
 # def framework_error(e):
