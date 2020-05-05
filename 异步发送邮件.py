@@ -34,6 +34,9 @@ class Zhushi(Resource):
 
 def send_async_email():
     outlook = win32.Dispatch('Outlook.Application')
+    send_account = None
+    for account in outlook.Session.Accounts:
+        print(account)
     reciList = ['15868407338@163.com']
     for i in range(len(reciList)):
         mail_item = outlook.CreateItem(0)  # 0: olMailItem
